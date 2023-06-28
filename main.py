@@ -5,6 +5,8 @@ from config import get_settings
 from pydantic import BaseSettings
 
 import uvicorn
+import redis
+
 
 class Assignee(BaseSettings):
     id_: int
