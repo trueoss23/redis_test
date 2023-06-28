@@ -20,7 +20,7 @@ class Task(BaseSettings):
 
 
 settings = get_settings()
-r = redis.Redis()
+r = redis.Redis(host='213.18.0.10', port=6379,)
 app = FastAPI(title=settings.app_name)
 
 
@@ -98,6 +98,3 @@ def get_counts(name):
     print(r.keys('*'))
     return get_all_counts(name)
 
-
-if __name__ == '__main__':
-    uvicorn.run('main:app', host='localhost', port=8002, reload=True)

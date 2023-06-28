@@ -5,6 +5,9 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+    networks:
+      freera_net:
+        ipv4_address: 213.18.0.10
 
   app:
     build: .
@@ -13,5 +16,17 @@ services:
     depends_on:
       - redis
     environment:
-      REDIS_HOST: redis_test-app-1
+      REDIS_HOST: 213.18.0.10
       REDIS_PORT: 6379
+    networks:
+      freera_net:
+        ipv4_address: 213.18.0.20
+
+
+networks:
+    freera_net:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 213.18.0.0/16
